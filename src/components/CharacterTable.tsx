@@ -24,25 +24,25 @@ interface Props {
 
 const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handleClick }) => {
 
-  const [ page, setPage ] = React.useState<number>( 0 );
-  const [ rowsPerPage, setRowsPerPage ] = React.useState<number>( 5 );
+  const [ page, setPage ] = React.useState<number>(0);
+  const [ rowsPerPage, setRowsPerPage ] = React.useState<number>(5);
 
   // Handle pagination
-  const handleChangePage = ( event: unknown, newPage: number ) => {
-    setPage( newPage );
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
   };
 
   // Handle pagination
-  const handleChangeRowsPerPage = ( event: React.ChangeEvent<HTMLInputElement> ) => {
-    setRowsPerPage( parseInt( event.target.value, 10 ));
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const isSelected = ( character: Character ) => selected.indexOf( character ) !== -1;
+  const isSelected = (character: Character) => selected.indexOf(character) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max( 0, (1 + page) * rowsPerPage - characterList.length ) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - characterList.length) : 0;
 
   return (
     <Paper sx={{ width: '100%', mb: 2, marginY: '50px' }}>
@@ -53,7 +53,7 @@ const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handl
             <TableRow>
               <TableCell colSpan={2}>Character</TableCell>
               <TableCell>Tags</TableCell>
-              {abilityList.map(( ability, index ) => (
+              {abilityList.map((ability, index) => (
                 <TableCell 
                   padding="none"
                   align="center"
@@ -66,14 +66,14 @@ const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handl
           </TableHead>
 
           <TableBody>
-            {characterList.slice( page * rowsPerPage, page * rowsPerPage + rowsPerPage )
-              .map(( character: Character, index ) => {
-                const isItemSelected = isSelected( character );
+            {characterList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((character: Character, index) => {
+                const isItemSelected = isSelected(character);
 
                 return (
                   <TableRow
                     hover
-                    onClick={() => handleClick( character )}
+                    onClick={() => handleClick(character)}
                     tabIndex={-1}
                     key={character.name}
                     selected={ isItemSelected }
@@ -109,7 +109,7 @@ const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handl
                     <TableCell>
                       <Box className="tag--wrapper">
                         {character.tags && 
-                        character.tags.map(( tag: { slot:number, tag_name:string }) => (
+                        character.tags.map((tag: { slot:number, tag_name:string }) => (
                           <Box 
                             className="character-tag" 
                             key={`${tag.slot}-${tag.tag_name}`}
@@ -121,9 +121,9 @@ const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handl
                     </TableCell>
 
                     {/* Character ability value columns */}
-                    {abilityList.map(( ability, index ) => {
+                    {abilityList.map((ability, index) => {
                       const abilities: CharacterAbility = character.abilities.filter(
-                        ( element: { abilityName: string; }) => element.abilityName === ability )[0];
+                        (element: { abilityName: string; }) => element.abilityName === ability)[0];
                       return ( abilities && 
                         <TableCell 
                           align="center" 

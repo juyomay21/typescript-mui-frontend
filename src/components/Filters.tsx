@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Box, FormControl, InputAdornment, OutlinedInput, SvgIcon, Button, ButtonProps } from '@mui/material';
 
 
-const TagButton = styled( Button )<ButtonProps>(() => ({
+const TagButton = styled(Button)<ButtonProps>(() => ({
   backgroundColor : 'rgb(255, 255, 255)',
   border          : '1px solid',
   borderRadius    : '1.2em',
@@ -36,19 +36,19 @@ const Filters: FC<Props> = ({ handleInputChange, tagList, selectedTag, handleTag
                   </SvgIcon>
               </InputAdornment>
             }
-            onChange={( e: React.ChangeEvent<HTMLInputElement> ) => { handleInputChange( e )}}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleInputChange(e)}}
           />
         </FormControl>
       </Box>
       <Box marginTop="50px" textAlign="left">
-        {tagList.map(( tag: string, index ) => {
-          const style = selectedTag.indexOf( tag ) >= 0 ? 'tag-selected--button' : '';
+        {tagList.map((tag: string, index) => {
+          const style = selectedTag.indexOf(tag) >= 0 ? 'tag-selected--button' : '';
           return (
             <TagButton 
               className={`tag--button ${style}`}
               variant="outlined"
               key={`tag-btn-${index}`}
-              onClick={ () => { handleTagClick( tag ) } }
+              onClick={ () => { handleTagClick(tag) } }
             >
               <span>✔</span>
               {tag}
@@ -57,7 +57,7 @@ const Filters: FC<Props> = ({ handleInputChange, tagList, selectedTag, handleTag
         })}
         <button 
           className="clear-all--btn"
-          onClick={ () => { handleTagClick( 'ClearAll' ) }}
+          onClick={ () => { handleTagClick('ClearAll') }}
         >
           Clear All
         </button>

@@ -6,7 +6,7 @@ import type { Character, CharacterAbility } from '../types'
 interface Props {
   abilityList     : string[],
   selected        : readonly Character[],
-  removeCharacter : ( character: Character ) => void
+  removeCharacter : (character: Character) => void
 }
 
 const SelectedSquad: FC<Props> = ({ abilityList, selected, removeCharacter }) => {
@@ -25,7 +25,7 @@ const SelectedSquad: FC<Props> = ({ abilityList, selected, removeCharacter }) =>
         alignItems="center" 
         margin="1em 0"
       >
-        {selected.map(( character: Character, index ) => (
+        {selected.map((character: Character, index) => (
           <Avatar
             className="character-avatar selected-avatar" 
             alt={character.name}
@@ -44,12 +44,12 @@ const SelectedSquad: FC<Props> = ({ abilityList, selected, removeCharacter }) =>
           spacing={4}
           padding={0}
         >
-          {abilityList.map(( ability: string, index: number ) => {
+          {abilityList.map((ability: string, index: number) => {
             let result = 0;
-            if ( selected.length > 0 ) {
-              selected.forEach(( character: Character ) => {
-                result += character.abilities.filter(( element: CharacterAbility ) => 
-                  element.abilityName === ability )[0].abilityScore;
+            if (selected.length > 0) {
+              selected.forEach((character: Character) => {
+                result += character.abilities.filter((element: CharacterAbility) => 
+                  element.abilityName === ability)[0].abilityScore;
               })
             }
             return (
