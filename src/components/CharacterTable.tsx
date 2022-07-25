@@ -24,8 +24,8 @@ interface Props {
 
 const CharacterTable: FC<Props> = ({ characterList, abilityList, selected, handleClick }) => {
 
-  const [ page, setPage ] = React.useState<number>(0);
-  const [ rowsPerPage, setRowsPerPage ] = React.useState<number>(5);
+  const [page, setPage] = React.useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
 
   // Handle pagination
   const handleChangePage = (event: unknown, newPage: number) => {

@@ -14,13 +14,13 @@ import CharacterTable from './components/CharacterTable'
 const data: Character[] = jsonData as Character[]
 
 function App() {
-  const abilityList: AbilityName[] = [ 'Power', 'Mobility', 'Technique', 'Survivability', 'Energy' ];
+  const abilityList: AbilityName[] = ['Power', 'Mobility', 'Technique', 'Survivability', 'Energy'];
 
   // Selected character state variable
-  const [ selectedCharacter, setSelectedCharacter ] = useState<readonly Character[]>([]);
-  const [ searchText, setSearchText ] = useState<string>("");
-  const [ selectedTag, setSelectedTag ] = useState<readonly string[]>([]);
-  const [ tagList, setTagList ] = useState<readonly string[]>([]);
+  const [selectedCharacter, setSelectedCharacter] = useState<readonly Character[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+  const [selectedTag, setSelectedTag] = useState<readonly string[]>([]);
+  const [tagList, setTagList] = useState<readonly string[]>([]);
 
   // Handle character add or remove.
   const handleCharacterClick = (character: Character) => {
@@ -106,7 +106,7 @@ function App() {
   // Handle character list filter
   const characterList = useMemo(() => {
     return data.filter(filterBySearchText).filter(filterByTag);
-  }, [ searchText, selectedTag ]);
+  }, [searchText, selectedTag]);
 
   useEffect(() => {
     let tagArray :string[] = [];
